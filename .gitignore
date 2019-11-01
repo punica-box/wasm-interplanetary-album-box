@@ -114,3 +114,4 @@ ontology_dapp_box.egg-info
 *.dat
 coverage.xml
 coverage/
+*.whl
