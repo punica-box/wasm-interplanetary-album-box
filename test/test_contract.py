@@ -53,11 +53,13 @@ class TestSmartContract(unittest.TestCase):
                                                       self.gas_limit)
         tx.sign_transaction(self.ont_id_ctrl_acct)
         result = self.sdk.rpc.send_raw_transaction_pre_exec(tx).get('Result')
-        builder = WasmParamsBuilder(bytes.fromhex(result[2:]))
-        builder.pop_str()
-        self.assertEqual('.jpg', builder.pop_str())
-        builder.pop_str()
-        builder.pop_str()
+        builder = WasmParamsBuilder(bytes.fromhex(result))
+        struct_len = builder.read_var_uint()
+        for _ in range(struct_len):
+            print(builder.pop_str())
+            print(builder.pop_str())
+            print(builder.pop_str())
+            print(builder.pop_str())
 
 
 if __name__ == '__main__':

@@ -64,7 +64,7 @@ def put_one_item_to_contract(ont_id_acct: Account, ipfs_address: str, ext: str, 
     put_one_item_func = WasmInvokeFunction('put_one_item')
     aes_iv, encode_g_tilde, encrypted_ipfs_address = ECIES.encrypt_with_cbc_mode(ipfs_address.encode('ascii'),
                                                                                  ont_id_acct.get_public_key_bytes())
-    put_one_item_func.set_params_value(ont_id_acct.get_address(), encrypted_ipfs_address, ext, aes_iv.hex(),
+    put_one_item_func.set_params_value(ont_id_acct.get_address(), encrypted_ipfs_address.hex(), ext, aes_iv.hex(),
                                        encode_g_tilde.hex())
 
     tx = sdk.wasm_vm.make_invoke_transaction(app.config['CONTRACT_ADDRESS_HEX'], put_one_item_func,
@@ -72,7 +72,11 @@ def put_one_item_to_contract(ont_id_acct: Account, ipfs_address: str, ext: str, 
                                              app.config['GAS_LIMIT'])
     tx.sign_transaction(ont_id_acct)
     tx.add_sign_transaction(payer_acct)
-    return sdk.rpc.send_raw_transaction(tx)
+    try:
+        return sdk.rpc.send_raw_transaction(tx)
+    except Exception as e:
+        print('put_one_item_to_contract: ', e)
+        return ''
 
 
 def get_item_list_from_contract(identity_acct: Account) -> list:
@@ -92,16 +96,16 @@ def get_item_list_from_contract(identity_acct: Account) -> list:
     if result is None:
         return list()
     builder = WasmParamsBuilder(bytes.fromhex(result))
-    len = builder.read_var_uint()
+    struct_len = builder.read_var_uint()
     album_list = list()
-    for _ in range(len):
+    for _ in range(struct_len):
         try:
             encrypted_ipfs_address_bytes = bytes.fromhex(builder.pop_str())
             ext = builder.pop_str()
             aes_iv = bytes.fromhex(builder.pop_str())
             encode_g_tilde = bytes.fromhex(builder.pop_str())
             ipfs_address = ECIES.decrypt_with_cbc_mode(encrypted_ipfs_address_bytes,
-                                                       identity_acct.get_public_key_bytes(), aes_iv, encode_g_tilde)
+                                                       identity_acct.get_private_key_bytes(), aes_iv, encode_g_tilde)
             album_list.append([ipfs_address.decode('ascii'), ext])
         except Exception as e:
             print('Decrypt with cbc mode failed: ', e.args[0])
