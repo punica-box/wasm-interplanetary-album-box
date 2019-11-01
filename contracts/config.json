@@ -5,11 +5,11 @@
     "AHBB3LQNpqXjCLathy7vTNgmQ1cGSj8S9Z": "password"
   },
   "deploy": {
-    "name": "InterplanetaryAlbum",
+    "name": "WebAssemblyInterplanetaryAlbum",
     "version": "v1.0.0",
     "author": "NashMiao",
     "email": "wdx7266@vip.qq.com",
-    "desc": "https://github.com/punica-box/interplanetary-album-box",
+    "desc": "https://github.com/punica-box/wasm-interplanetary-album-box",
     "needStorage": true,
     "payer": "AKeDu9QW6hfAhwpvCwNNwkEQt1LkUQpBpW",
     "gasPrice": 500,
