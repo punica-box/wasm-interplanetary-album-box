@@ -13,13 +13,12 @@ from flask_jsglue import JSGlue
 from ontology.account.account import Account
 from ontology.contract.wasm.invoke_function import WasmInvokeFunction
 from ontology.contract.wasm.params_builder import WasmParamsBuilder
+from ontology.crypto.ecies import ECIES
 from ontology.exception.exception import SDKException
 from ontology.sdk import Ontology
 from ontology.utils import utils
 from ontology.wallet.wallet_manager import WalletManager
 from werkzeug.utils import secure_filename
-
-from src.crypto.ecies import ECIES
 
 # ipfs_daemon = subprocess.Popen("ipfs daemon", stdout=subprocess.PIPE, stderr=subprocess.STDOUT, shell=True)
 static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
