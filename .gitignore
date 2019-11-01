@@ -115,3 +115,4 @@ ontology_dapp_box.egg-info
 coverage.xml
 coverage/
 *.whl
+src/static/album
