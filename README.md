@@ -7,7 +7,7 @@ A box has all you need to get started with WebAssembly contracts, IPFS and ONT I
 Install Punica.
 
 ```bash
-pip3 install punica
+python3 -m pip install punica
 ```
 
 Download the `wasm-interplanetary-album-box`.
