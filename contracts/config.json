@@ -26,10 +26,10 @@
       {
         "put_one_item": [
           "AHBB3LQNpqXjCLathy7vTNgmQ1cGSj8S9Z",
-          "encrypted_ipfs_address",
-          "ext",
-          "aes_iv",
-          "encode_g_tilde"
+          "d8dc7175aa736321e469d59b6c06a9e1fdb5d2775c82a9f833d34cd3a4035a201fe9dc7b39ae82d9c5c91bbf5d1646cd",
+          ".jpg",
+          "201e9376caaa16ea982b5a31eba0f3f4",
+          "0484681e892360dc4700606273bf16b6a0c41398de2e2d960f340079610aee8856676b2122319fa0726ec1ff2759fd3c9122dd834afe17e51adffebf82abc07ecc"
         ],
         "signers": [
           "AHBB3LQNpqXjCLathy7vTNgmQ1cGSj8S9Z"

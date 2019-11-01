@@ -2,3 +2,5 @@ Flask==1.1.1
 Flask-JSGlue==0.3.1
 ipfsapi==0.4.3
 Werkzeug==0.16
+Pillow==6.2.0
+ontology-python-sdk==2.1.0rc2
